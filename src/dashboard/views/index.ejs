@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>❄️ BingSeol Bot</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <%- include('partials/nav') %>
+  <main class="hero">
+    <div class="hero-content">
+      <h1>❄️ BingSeol Bot</h1>
+      <p class="tagline">Fast, stable, and easy to use Discord bot.</p>
+      <div class="stats">
+        <div class="stat-card">
+          <span class="stat-number"><%= guildCount %></span>
+          <span class="stat-label">Servers</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number"><%= commandCount %></span>
+          <span class="stat-label">Commands</span>
+        </div>
+      </div>
+      <div class="cta-buttons">
+        <a href="https://discord.com/oauth2/authorize?client_id=1157769236509380688&permissions=8&scope=applications.commands%20bot" class="btn btn-primary" target="_blank" rel="noopener">
+          ➕ Invite Bot
+        </a>
+        <a href="/dashboard" class="btn btn-secondary">
+          🌐 Dashboard
+        </a>
+        <a href="https://discord.gg/cH87hp5RQR" class="btn btn-outline" target="_blank" rel="noopener">
+          💬 Support
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <section class="features">
+    <h2>✨ Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🎵</span>
+        <h3>Music Playback</h3>
+        <p>Play songs from YouTube with a full queue system, skip, pause, resume, and loop.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔊</span>
+        <h3>Natural TTS</h3>
+        <p>Speak text aloud in voice channels with multi-language text-to-speech support.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚙️</span>
+        <h3>Server Management</h3>
+        <p>Kick, ban, timeout, clear messages, set slowmode, and more.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🌐</span>
+        <h3>Web Dashboard</h3>
+        <p>Manage your servers and view the music queue from a clean web interface.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="commands-preview">
+    <h2>📋 Commands</h2>
+    <div class="commands-grid">
+      <div class="cmd-group">
+        <h3>🎵 Music</h3>
+        <ul>
+          <li><code>/play</code> — Play a song</li>
+          <li><code>/skip</code> — Skip current song</li>
+          <li><code>/stop</code> — Stop &amp; disconnect</li>
+          <li><code>/pause</code> / <code>/resume</code></li>
+          <li><code>/queue</code> — View queue</li>
+          <li><code>/nowplaying</code> — Current song</li>
+          <li><code>/loop</code> — Toggle loop</li>
+        </ul>
+      </div>
+      <div class="cmd-group">
+        <h3>🔊 TTS</h3>
+        <ul>
+          <li><code>/tts</code> — Speak text in voice channel</li>
+          <li>10 languages supported</li>
+        </ul>
+      </div>
+      <div class="cmd-group">
+        <h3>⚙️ Admin</h3>
+        <ul>
+          <li><code>/kick</code> / <code>/ban</code> / <code>/unban</code></li>
+          <li><code>/timeout</code> — Mute a member</li>
+          <li><code>/clear</code> — Bulk delete messages</li>
+          <li><code>/slowmode</code> — Set channel slowmode</li>
+          <li><code>/serverinfo</code> / <code>/userinfo</code></li>
+          <li><code>/ping</code> — Bot latency</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= guild.name %> — BingSeol Bot</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <%- include('partials/nav') %>
+  <main class="guild-dashboard">
+    <div class="page-header guild-header">
+      <% if (guild.icon) { %>
+        <img src="<%= guild.icon %>" alt="<%= guild.name %>" class="guild-header-icon" />
+      <% } %>
+      <div>
+        <h1><%= guild.name %></h1>
+        <p>👥 <%= guild.memberCount %> members</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <h2>🎵 Music Queue</h2>
+      <% if (currentSong) { %>
+        <div class="now-playing">
+          <% if (currentSong.thumbnail) { %>
+            <img src="<%= currentSong.thumbnail %>" alt="thumbnail" class="song-thumbnail" />
+          <% } %>
+          <div class="song-details">
+            <span class="song-label">Now Playing</span>
+            <a href="<%= currentSong.url %>" target="_blank" rel="noopener" class="song-title"><%= currentSong.title %></a>
+            <span class="song-meta">Duration: <%= currentSong.duration || 'Unknown' %> • Requested by <%= currentSong.requestedBy %></span>
+            <span class="loop-badge <%= looping ? 'on' : 'off' %>"><%= looping ? '🔁 Loop On' : '❌ Loop Off' %></span>
+          </div>
+        </div>
+
+        <% if (queueList.length > 0) { %>
+          <div class="queue-list">
+            <h3>Up Next (<%= queueList.length %> song<%= queueList.length !== 1 ? 's' : '' %>)</h3>
+            <ol>
+              <% queueList.forEach(function(song) { %>
+                <li class="queue-item">
+                  <a href="<%= song.url %>" target="_blank" rel="noopener"><%= song.title %></a>
+                  <span class="queue-meta"><%= song.duration || '?' %> — <%= song.requestedBy %></span>
+                </li>
+              <% }); %>
+            </ol>
+          </div>
+        <% } %>
+      <% } else { %>
+        <div class="empty-state">
+          <p>🎵 No music is playing right now.</p>
+          <p>Use <code>/play</code> in Discord to start playing music!</p>
+        </div>
+      <% } %>
+    </section>
+
+    <div class="back-link">
+      <a href="/dashboard" class="btn btn-outline">← Back to Dashboard</a>
+    </div>
+  </main>
+  <%- include('partials/footer') %>
+</body>
+</html>

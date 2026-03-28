@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — BingSeol Bot</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <%- include('partials/nav') %>
+  <main class="dashboard-page">
+    <div class="page-header">
+      <h1>🌐 Dashboard</h1>
+      <p>Select a server to manage.</p>
+    </div>
+
+    <% if (botGuilds.length === 0) { %>
+      <div class="empty-state">
+        <p>😔 The bot is not in any of your servers yet.</p>
+        <a href="https://discord.com/oauth2/authorize?client_id=1157769236509380688&permissions=8&scope=applications.commands%20bot" class="btn btn-primary" target="_blank" rel="noopener">
+          ➕ Invite Bot
+        </a>
+      </div>
+    <% } else { %>
+      <div class="guild-grid">
+        <% botGuilds.forEach(function(guild) { %>
+          <a href="/dashboard/<%= guild.id %>" class="guild-card">
+            <% if (guild.icon) { %>
+              <img src="<%= guild.icon %>" alt="<%= guild.name %>" class="guild-icon" />
+            <% } else { %>
+              <div class="guild-icon-placeholder"><%= guild.name.charAt(0) %></div>
+            <% } %>
+            <div class="guild-info">
+              <span class="guild-name"><%= guild.name %></span>
+              <span class="guild-members">👥 <%= guild.memberCount %> members</span>
+            </div>
+          </a>
+        <% }); %>
+      </div>
+    <% } %>
+  </main>
+  <%- include('partials/footer') %>
+</body>
+</html>
