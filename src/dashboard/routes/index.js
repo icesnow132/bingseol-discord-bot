@@ -1,7 +1,17 @@
 const express = require('express');
 const passport = require('passport');
+const rateLimit = require('express-rate-limit');
 
 const router = express.Router();
+
+// Rate limiter for auth and protected routes
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 60,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many requests. Please try again later.' },
+});
 
 // Middleware to check if user is authenticated
 function isAuthenticated(req, res, next) {
@@ -21,13 +31,13 @@ router.get('/', (req, res) => {
 });
 
 // Login page
-router.get('/login', (req, res) => {
+router.get('/login', authLimiter, (req, res) => {
   if (req.isAuthenticated()) return res.redirect('/dashboard');
   res.render('login', { user: null });
 });
 
 // Discord OAuth2 - start
-router.get('/auth/discord', passport.authenticate('discord'));
+router.get('/auth/discord', authLimiter, passport.authenticate('discord'));
 
 // Discord OAuth2 - callback
 router.get(
@@ -47,7 +57,7 @@ router.get('/logout', (req, res, next) => {
 });
 
 // Dashboard overview (requires login)
-router.get('/dashboard', isAuthenticated, (req, res) => {
+router.get('/dashboard', authLimiter, isAuthenticated, (req, res) => {
   const client = req.discordClient;
 
   // Filter guilds the user is in and the bot is in
@@ -71,7 +81,7 @@ router.get('/dashboard', isAuthenticated, (req, res) => {
 });
 
 // Guild-specific dashboard
-router.get('/dashboard/:guildId', isAuthenticated, (req, res) => {
+router.get('/dashboard/:guildId', authLimiter, isAuthenticated, (req, res) => {
   const client = req.discordClient;
   const { guildId } = req.params;
 
