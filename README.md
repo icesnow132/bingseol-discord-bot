@@ -13,12 +13,12 @@ Simple, powerful, and easy-to-use Discord bot for your server.
 ---
 
 ## 🚀 Invite Bot
-👉 [https://your-bot-invite-link](https://discord.com/oauth2/authorize?client_id=1157769236509380688&permissions=8&scope=applications.commands%20bot)
+👉 **[➕ Add BingSeol Bot to your server](https://discord.com/oauth2/authorize?client_id=1157769236509380688&permissions=8&scope=applications.commands%20bot)**
 
 ---
 
 ## 💬 Support Server
-👉 [https://your-discord-server](https://discord.gg/cH87hp5RQR)
+👉 **[💬 Join Support Server](https://discord.gg/cH87hp5RQR)**
 
 ---
 
